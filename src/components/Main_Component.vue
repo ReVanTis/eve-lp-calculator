@@ -284,7 +284,7 @@ export default {
       $.ajax({
         type: "GET",
         url:
-          "http://localhost:8080/api/quicklook?regionlimit=10000002&typeid=" +
+          window.location.href+"api/quicklook?regionlimit=10000002&typeid=" +
           product_id,
         dataType: "xml",
         success: function(xml) {
@@ -345,7 +345,7 @@ export default {
 
     getReqItemData: function(item) {
       var item_promise = $.getJSON(
-        "http://localhost:8080/api/market/region/10000002/type/" +
+        window.location.href+"api/market/region/10000002/type/" +
           item.type_id +
           ".json",
         function(mm_data) {
@@ -380,7 +380,8 @@ export default {
             var product = vm.blueprintProduct.get(element.type_id);
             if (product != undefined)
             {
-              product_id=product.product;
+              console.log("Got blueprint product " + product.product);
+               product_id=product.product;
             }
 
             var isUseCookie = useCookie;
@@ -391,7 +392,7 @@ export default {
 
             if (!isUseCookie) {
               var main_promise = $.getJSON(
-                "http://localhost:8080/api/market/region/10000002/type/" +
+                window.location.href+"api/market/region/10000002/type/" +
                   product_id +
                   ".json",
                 function(m_data) {
